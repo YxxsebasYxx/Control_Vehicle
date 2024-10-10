@@ -1,0 +1,64 @@
+<?xml version="1.0"?> 
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="basic">
+  <!-- Import object's inertias -->
+  <xacro:include filename= "inertias.xacro"/>
+  
+  <link name="base_link" />
+  
+  <link name="base_footprint">
+    <!-- Visual tag -->
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <cylinder length="0.1" radius="0.1"/>
+      </geometry>
+    </visual>
+    <!-- Collision tag -->
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <cylinder length="0.1" radius="0.1"/>
+      </geometry>
+    </collision>
+    <!-- Inertial tag -->
+    <xacro:inertial_cylinder mass="1.0" length="0.1" radius="0.1">
+        <origin xyz= "0 0 0" rpy="0 0 0" />
+    </xacro:inertial_cylinder>
+  </link>
+
+  <joint name="joint_base" type="fixed">
+    <origin xyz="0 0 0" rpy="0 0 0" />
+    <parent link="base_link" />
+    <child link="base_footprint"  />
+    <axis xyz="0 0 0" />
+  </joint>
+
+  <link name="final_link">
+    <!-- Visual tag -->
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <box size="0.1 0.4 0.1"/>
+      </geometry>
+    </visual>
+    <!-- Collision tag -->
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <box size="0.1 0.4 0.1"/>
+      </geometry>
+    </collision>
+    <!-- Inertial tag -->
+    <xacro:inertial_box mass="1.2" x="0.1" y="0.4" z="0.1">
+        <origin xyz="0.0 0 0.0" rpy="0 0 0" />
+    </xacro:inertial_box>
+  </link>
+  
+  <joint name="q" type="revolute">
+    <axis xyz="0 0 1" />
+    <origin xyz="0 0 0.1" rpy="0 0 0" />
+    <parent link="base_footprint"/>
+    <child link="final_link"/>
+    <limit lower="-0.7854" upper="0.7854" effort="10.0" velocity="10.0"/>
+  </joint>
+</robot>
