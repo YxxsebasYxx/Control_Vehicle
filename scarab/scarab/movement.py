@@ -60,7 +60,7 @@ def main():
         time.sleep(4)
 
     # Enviar el comando de despegue
-        altitude = 20  # Altitud de despegue en metros
+        altitude = 10  # Altitud de despegue en metros
         the_connection.mav.command_long_send(
             the_connection.target_system,    # target system
             the_connection.target_component, # target component

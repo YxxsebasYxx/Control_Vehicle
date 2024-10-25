@@ -12,15 +12,15 @@ def generate_launch_description():
         Node(
             package='scarab',
             namespace='scarab',
-            executable='movement',
-            name='movement',
+            executable='rover',
+            name='rover_ardupilot',
             prefix='gnome-terminal --'
         ),
         Node(
             package='scarab',
             namespace='scarab',
-            executable='subprocess',
-            name='subprocess',
+            executable='subprocess3',
+            name='subprocess3',
             prefix='gnome-terminal --',
         ),
     ])
